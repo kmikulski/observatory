@@ -10,5 +10,8 @@
 .idea/**/gradle.xml
 .idea/**/libraries
 
+# sample datasets
+src/main/resources/*.csv
+
 *.class
 *.log
