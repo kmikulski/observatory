@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaCompilerConfiguration">
+    <profile name="sbt 1" modules="observatory_1149" />
+    <profile name="sbt 2" modules="root">
+      <option name="experimental" value="true" />
+      <option name="deprecationWarnings" value="true" />
+      <option name="uncheckedWarnings" value="true" />
+      <option name="featureWarnings" value="true" />
+      <parameters>
+        <parameter value="-encoding" />
+        <parameter value="UTF-8" />
+        <parameter value="-Xlint" />
+        <parameter value="-Yno-adapted-args" />
+        <parameter value="-Ywarn-dead-code" />
+        <parameter value="-Ywarn-value-discard" />
+        <parameter value="-Xfuture" />
+      </parameters>
+    </profile>
+    <profile name="sbt 3" modules="capstoneUI">
+      <plugins>
+        <plugin path="$USER_HOME$/.coursier/cache/v1/http/repo1.maven.org/maven2/org/scala-js/scalajs-compiler_2.11.8/0.6.11/scalajs-compiler_2.11.8-0.6.11.jar" />
+      </plugins>
+    </profile>
+  </component>
+</project>
