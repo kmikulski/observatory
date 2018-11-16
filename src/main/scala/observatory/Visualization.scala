@@ -21,7 +21,7 @@ object Visualization {
       case None =>
         val (numerator, denominator) = temperatures.foldLeft((0.0, 0.0)) { (acc, x) =>
           val w = 1 / p(location.distance(x._1))
-          (acc._1 + w * x._2, acc._1 + w)
+          (acc._1 + w * x._2, acc._2 + w)
         }
         numerator / denominator
     }
