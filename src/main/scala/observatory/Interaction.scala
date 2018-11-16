@@ -27,7 +27,7 @@ object Interaction {
       y <- 0 until height
       x <- 0 until width
     } yield {
-      val location = coordinatesToLocation(x.toDouble / width + tile.x, y.toDouble / height + tile.y, tile.zoom)
+      val location = coordinatesToLocation(tile.x * width + x, tile.y * height + y, tile.zoom + 8)
       val temp = Visualization.predictTemperature(temperatures, location)
       val color = Visualization.interpolateColor(colors, temp)
       Pixel(color.red, color.green, color.blue, 127)
