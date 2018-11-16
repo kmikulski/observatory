@@ -33,7 +33,30 @@ object Visualization {
     * @return The color that corresponds to `value`, according to the color scale defined by `points`
     */
   def interpolateColor(points: Iterable[(Temperature, Color)], value: Temperature): Color = {
-    ???
+    import scala.math._
+    def interp(p1: Double, p2: Double, t: Double): Int = round((1 - t) * p1 + t * p2).toInt
+
+    points.find(_._1 == value) match {
+      case Some(matched) =>
+        matched._2
+      case None =>
+        val (lower, higher) = points.toList.sortBy(_._1).partition(_._1 < value)
+        (lower, higher) match {
+          case (Nil, _) =>
+            higher.head._2
+          case (_, Nil) =>
+            lower.last._2
+          case (_, _) =>
+            val above = higher.head
+            val below = lower.last
+            val t = abs(above._1 - value) / abs(above._1 - below._1)
+            Color(
+              interp(above._2.red, below._2.red, t),
+              interp(above._2.green, below._2.green, t),
+              interp(above._2.blue, below._2.blue, t)
+            )
+        }
+    }
   }
 
   /**
