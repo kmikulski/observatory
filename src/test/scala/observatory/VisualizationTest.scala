@@ -28,4 +28,19 @@ trait VisualizationTest extends FunSuite with Checkers {
     assert(christchurch.antipodes == seville)
     assert(abs(christchurch.distance(seville) - 20000) < epsilon)
   }
+
+  test("interpolated color below black should be black") {
+    val points: Seq[(Temperature, Color)] = Seq((0, Color(0,0,0)), (100, Color(255,255,255)))
+    assert(Visualization.interpolateColor(points, -20) == Color(0,0,0))
+  }
+
+  test("interpolated color above white should be white") {
+    val points: Seq[(Temperature, Color)] = Seq((0, Color(0,0,0)), (100, Color(255,255,255)))
+    assert(Visualization.interpolateColor(points, 120) == Color(255,255,255))
+  }
+
+  test("interpolated color between black and white should be gray") {
+    val points: Seq[(Temperature, Color)] = Seq((0, Color(0,0,0)), (100, Color(255,255,255)))
+    assert(Visualization.interpolateColor(points, 50) == Color(128,128,128))
+  }
 }
