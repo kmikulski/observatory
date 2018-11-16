@@ -36,13 +36,13 @@ object Extraction {
     }
   }
 
-  private def stationFromCsv(csv: String): Station = {
+  def stationFromCsv(csv: String): Station = {
     val b = csv.split(",", -1)
     val location = if(b(2).nonEmpty && b(3).nonEmpty) Some(Location(b(2).toDouble, b(3).toDouble)) else None
     Station(Id(b(0), b(1)), location)
   }
 
-  private def readingFromCsv(year: Year)(csv: String): Reading = {
+  def readingFromCsv(year: Year)(csv: String): Reading = {
     val b = csv.split(",", -1)
     val date = LocalDate.of(year, b(2).toInt, b(3).toInt)
     val temp = BigDecimal((b(4).toDouble - 32) / 1.8).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
