@@ -11,7 +11,7 @@ object Aux extends App {
 
   import Extraction._
 
-  val stationLimit = 1000
+  val stationLimit = 100
   val year = 2015
 
   val log = Logger.getLogger("Aux")

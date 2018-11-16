@@ -2,7 +2,7 @@ package observatory
 
 object Main extends App {
 
-  val temperatures = Extraction.locateTemperatures(1975, "/stations.csv", "/1975.csv")
+  val temperatures = Extraction.locateTemperatures(2015, "/short-stations.csv", "/short-temperatures.csv")
   val averages = Extraction.locationYearlyAverageRecords(temperatures)
   val colors = Seq(
     (60.0, Color(255,255,255)),
