@@ -45,7 +45,7 @@ object Extraction {
   private def readingFromCsv(year: Year)(csv: String): Reading = {
     val b = csv.split(",", -1)
     val date = LocalDate.of(year, b(2).toInt, b(3).toInt)
-    val temp = (b(4).toDouble - 32) / 1.8
+    val temp = BigDecimal((b(4).toDouble - 32) / 1.8).setScale(2, BigDecimal.RoundingMode.HALF_UP).toDouble
     Reading(Id(b(0), b(1)), date, temp)
   }
 
