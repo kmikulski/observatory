@@ -46,12 +46,12 @@ object Interaction {
   def generateTiles[Data](yearlyData: Iterable[(Year, Data)], generateImage: (Year, Tile, Data) => Unit): Unit = for {
     (year, data) <- yearlyData
     zoom <- 0 to 3
-    x <- 0 until (2 ^ zoom)
-    y <- 0 until (2 ^ zoom)
+    x <- 0 until (1 << zoom)
+    y <- 0 until (1 << zoom)
   } generateImage(year, Tile(x, y, zoom), data)
 
   private def coordinatesToLocation(x: Double, y: Double, zoom: Int): Location = {
-    val n = 2 ^ zoom
+    val n = 1 << zoom
     val lon = x / n * 360 - 180
     val lat = atan(sinh(Pi * (1 - 2 * y / n))) * 180 / Pi
     Location(lat, lon)
