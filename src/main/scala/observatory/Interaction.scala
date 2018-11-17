@@ -43,12 +43,12 @@ object Interaction {
     * @param generateImage Function that generates an image given a year, a zoom level, the x and
     *                      y coordinates of the tile and the data to build the image from
     */
-  def generateTiles[Data](
-    yearlyData: Iterable[(Year, Data)],
-    generateImage: (Year, Tile, Data) => Unit
-  ): Unit = {
-    ???
-  }
+  def generateTiles[Data](yearlyData: Iterable[(Year, Data)], generateImage: (Year, Tile, Data) => Unit): Unit = for {
+    (year, data) <- yearlyData
+    zoom <- 0 to 3
+    x <- 0 until (2 ^ zoom)
+    y <- 0 until (2 ^ zoom)
+  } generateImage(year, Tile(x, y, zoom), data)
 
   private def coordinatesToLocation(x: Double, y: Double, zoom: Int): Location = {
     val n = 2 ^ zoom
